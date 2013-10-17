@@ -3,7 +3,7 @@ How to create the virtual phone cards, downloadable by smartphone.
 Running CreatePhoneCards.jar will create three .vcf files, one with brothers 
 info, one with pledges info, and one with both. Follow these instructions 
 to easily create the phone cards and not have to do all that laminating 
-and cutting stuff that makes you feel like a fifth grader in arts in crafts.
+and cutting stuff that makes you feel like a fifth grader in arts and crafts.
 That's the whole reason I wrote this program.
 
 1. Open the current Secretary worksheet. This program is based off the Fall
