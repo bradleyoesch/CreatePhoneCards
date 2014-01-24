@@ -13,9 +13,10 @@ Follow these instructions to easily create the phone cards and not have to do al
 4. Click on the Pledge Roster tab. Click File > Download as > Plain text
 5. Rename this file "Info Pledges.tsv".
 6. Place both files in same folder as the .jar file, preferably in a newly named folder following convention like "SPRING 2014".
-7. Run "CreatePhoneCards.jar".
-8. Open the newly created files in a text editor like Notepad or TextEdit to see if it worked. If they're not empty, it probably worked correctly.
-9. To fully test, email the files to yourself and see if you can add the contacts to your phone. They should now come up in searches and when drafting emails, if you use the initials emailing convention, then the correct brother will show up as a selectable recipient.
+7. Rename people's names as necessary, e.g. Matthew to Matt, William to Billy)
+8. Run "CreatePhoneCards.jar".
+9. Open the newly created files in a text editor like Notepad or TextEdit to see if it worked. If they're not empty, it probably worked correctly.
+10. To fully test, email the files to yourself and see if you can add the contacts to your phone. They should now come up in searches and when drafting emails, if you use the initials emailing convention, then the correct brother will show up as a selectable recipient.
 
 *If it didn't work, check to see if the .tsv files are formatted the same as 
 the "Info Brothers Test.tsv" or "Info Pledges Test.tsv" files*

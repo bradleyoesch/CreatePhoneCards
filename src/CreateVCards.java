@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * currently (as of Fall 2013) on Google Drive.
  * 
  * @author Bradley Oesch
- * @version 1.0 September 2013
+ * @version 1.1 January 2014
  */
 public class CreateVCards {
 	
@@ -77,7 +77,7 @@ public class CreateVCards {
 			card.setBrother(false);
 			card.setFirstName(firstName);
 			card.setLastName(nameSplit[0]);
-			card.setPhoneNumber(split[3]);
+			card.setPhoneNumber(split[2]);
 			this.cards.add(card);
 		}
 	}
@@ -135,30 +135,42 @@ public class CreateVCards {
 			} finally {
 				readerPledges.close();
 			}
-		} catch (IOException e) {
-		    System.err.println("Caught IOException: " + e.getMessage());
-		}
-		
-		try {
-			BufferedWriter writerAll = new BufferedWriter(new FileWriter("Phone Card All.vcf"));
-			BufferedWriter writerBrothers = new BufferedWriter(new FileWriter("Phone Card Brothers.vcf"));
-			BufferedWriter writerPledges = new BufferedWriter(new FileWriter("Phone Card Pledges.vcf"));
-			
+
 			try {
-				for (Card c : all.cards) {
-					all.writeCard(writerAll, c);
-					if (c.getBrother())
-						all.writeCard(writerBrothers, c);
-					else
-						all.writeCard(writerPledges, c);
+				BufferedWriter writerAll = new BufferedWriter(new FileWriter("Phone Card All.vcf"));
+				BufferedWriter writerBrothers = new BufferedWriter(new FileWriter("Phone Card Brothers.vcf"));
+				BufferedWriter writerPledges = new BufferedWriter(new FileWriter("Phone Card Pledges.vcf"));
+				
+				try {
+					for (Card c : all.cards) {
+						all.writeCard(writerAll, c);
+						if (c.getBrother())
+							all.writeCard(writerBrothers, c);
+						else
+							all.writeCard(writerPledges, c);
+					}
+				} finally {
+					writerAll.close();
+					writerBrothers.close();
+					writerPledges.close();
 				}
-			} finally {
-				writerAll.close();
-				writerBrothers.close();
-				writerPledges.close();
+			} catch (IOException e) {
+				BufferedWriter writerError = new BufferedWriter(new FileWriter("error.log"));
+				writerError.write("Error when attempting to writing files.\n" +
+						"Problem likely with code.");
+				writerError.close();
+			    System.err.println("Caught IOException when writing files: " + e.getMessage());
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			BufferedWriter writerError = new BufferedWriter(new FileWriter("Error.log"));
+			writerError.write("Error when attempting to read files.");
+			writerError.newLine();
+			writerError.write("Problem likely with filenames or roster layout.");
+			writerError.newLine();
+			writerError.write("Check downloaded roster with the test files and make sure " +
+					"they look identical (disregarding names).");
+			writerError.close();
+		    System.err.println("Caught IOException when reading files: " + e.getMessage());
 		}
 	}
 
